@@ -1,5 +1,5 @@
 {
-  "name": "reparse",
+  "name": "@knighted/reparse",
   "version": "1.0.0",
   "description": "Multiple swc parsings of the same file with correct spans.",
   "type": "module",
