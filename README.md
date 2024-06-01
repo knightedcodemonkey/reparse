@@ -14,9 +14,11 @@ Provides a workaround for [swc/1366](https://github.com/swc-project/swc/issues/1
 
 ## Example
 
+There are four exports `reparse`, `reparseFile`, `reparseSync` and `reparseFileSync`.
+
 ```js
-import assert from 'node:assert/strict'
 import { reparse } from '@knighted/reparse'
+import assert from 'node:assert/strict'
 
 const ast1 = await reparse('const foo = "bar"')
 const ast2 = await reparse('const foo = "bar"')
@@ -25,19 +27,13 @@ assert.equal(ast1.span.start, ast2.span.start)
 assert.equal(ast1.span.end, ast2.span.end)
 ```
 
-You can also pass a file to `reparseFile`.
-
-## Notes
-
-This package makes use of [`child_process.fork()`](https://nodejs.org/api/child_process.html#child_processforkmodulepath-args-options) for each invokation of `reparse()`. Thus it makes use of a promise to resolve the response from the forked child process which does the parsing, so the functions provided from `@knighted/reparse` are both async.
-
-If you are consuming this package from CommonJS you need to wrap calls to `reparse` and `reparseFile` in an `async` function since top level await is not available.
+Sync file example:
 
 ```js
-const { reparse } = require('@knighted/reparse')
-const doReparse = async () => {
-  const ast = await reparse('const foo = "bar"')
-}
+import { reparseFileSync } from '@knighted/reparse'
 
-doReparse()
+const ast0 = reparseFileSync('./file.ts')
+const ast1 = reparseFileSync('./file.ts')
+
+console.log(ast0.span.start === ast1.span.start) // true
 ```
