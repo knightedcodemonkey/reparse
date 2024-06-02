@@ -11,4 +11,10 @@ export default tseslint.config(
       'no-console': 'error',
     },
   },
+  {
+    files: ['test/fixtures/**/*'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
+  },
 )
