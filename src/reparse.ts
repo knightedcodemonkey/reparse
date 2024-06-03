@@ -1,12 +1,12 @@
 import { fork, spawnSync } from 'node:child_process'
 import { join } from 'node:path'
 
-import type { Module } from '@swc/core'
+import type { Module, Script } from '@swc/core'
 
 type Lang = 'ts' | 'es'
 
-const isModule = (msg: unknown): msg is Module => {
-  if (msg && typeof msg === 'object' && 'type' in msg && msg.type === 'Module') {
+const isModuleOrScript = (msg: unknown): msg is Module | Script => {
+  if (msg && typeof msg === 'object' && 'type' in msg && (msg.type === 'Module' || msg.type === 'Script')) {
     return true
   }
 
@@ -17,9 +17,9 @@ const forkChild = (...args: string[]) => {
     serialization: 'advanced',
   })
 
-  return new Promise<Module>((resolve, reject) => {
+  return new Promise<Module | Script>((resolve, reject) => {
     child.on('message', msg => {
-      if (isModule(msg)) {
+      if (isModuleOrScript(msg)) {
         resolve(msg)
       }
 
