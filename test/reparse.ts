@@ -30,4 +30,20 @@ describe('@knighted/reparse', () => {
     assert.equal(ast3.span.start, ast4.span.start)
     assert.equal(ast3.span.end, ast4.span.end)
   })
+
+  it('works with comments', async () => {
+    const ast1 = await reparseFile(join(fixtures, 'commented.js'))
+    const ast2 = await reparseFile(join(fixtures, 'commented.js'))
+
+    assert.equal(ast1.span.start, ast2.span.start)
+    assert.equal(ast1.span.end, ast2.span.end)
+  })
+
+  it.skip('works with large files', async () => {
+    const ast1 = await reparseFile(join(fixtures, 'large.js'))
+    const ast2 = await reparseFile(join(fixtures, 'large.js'))
+
+    assert.equal(ast1.span.start, ast2.span.start)
+    assert.equal(ast1.span.end, ast2.span.end)
+  })
 })

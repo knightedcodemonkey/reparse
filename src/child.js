@@ -5,7 +5,7 @@ import { parseSync, parseFileSync } from '@swc/core'
 const baseConfig = {
   comments: false,
   target: 'esnext',
-  isModule: true,
+  isModule: 'unknown',
 }
 const tsConfig = {
   syntax: 'typescript',
