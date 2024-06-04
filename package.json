@@ -1,6 +1,6 @@
 {
   "name": "@knighted/reparse",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Multiple swc parsings of the same file with correct spans.",
   "type": "module",
   "main": "dist/reparse.js",
@@ -36,7 +36,7 @@
     "parseSync",
     "multiple",
     "reruns",
-    "spans"
+    "correct spans"
   ],
   "files": [
     "dist"
@@ -62,8 +62,8 @@
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.0.0-alpha.24"
   },
-  "dependencies": {
-    "@swc/core": "^1.5.24"
+  "peerDependencies": {
+    "@swc/core": ">=1.5.24"
   },
   "prettier": {
     "arrowParens": "avoid",
