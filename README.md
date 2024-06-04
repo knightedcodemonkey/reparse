@@ -11,6 +11,7 @@ Provides a workaround for [swc/1366](https://github.com/swc-project/swc/issues/1
 ## Requirements
 
 - Node >= 20.11.0
+- `@swc/core` >= 1.5.24 as peer dependency
 
 ## Example
 
@@ -37,3 +38,8 @@ const ast1 = reparseFileSync('./file.ts')
 
 console.log(ast0.span.start === ast1.span.start) // true
 ```
+
+## Notes
+
+- To use `reparse` with `@swc/core` as a dependency use the 1.x versions.
+- To use `reparse` with `@swc/core` as a peer dependency use the 2.x versions.
