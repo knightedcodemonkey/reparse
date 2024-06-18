@@ -1,6 +1,6 @@
 {
   "name": "@knighted/reparse",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Multiple swc parsings of the same file with correct spans.",
   "type": "module",
   "main": "dist/reparse.js",
@@ -27,6 +27,7 @@
     "lint": "eslint --ignore-pattern dist .",
     "build": "duel",
     "postbuild": "tsx postbuild.ts",
+    "pretest": "npm run build",
     "test": "c8 --reporter=text --reporter=text-summary --reporter=lcov tsx --test --test-reporter=spec test/*.ts",
     "prepack": "npm run build"
   },
@@ -54,13 +55,13 @@
     "@eslint/js": "^9.4.0",
     "@knighted/duel": "^2.0.0-rc.0",
     "@types/node": "^20.13.0",
-    "c8": "^9.1.0",
+    "c8": "^10.1.2",
     "eslint": "^9.4.0",
     "eslint-plugin-n": "^17.7.0",
     "prettier": "^3.2.5",
-    "tsx": "^4.11.0",
+    "tsx": "^4.15.6",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^8.0.0-alpha.24"
+    "typescript-eslint": "^8.0.0-alpha.30"
   },
   "peerDependencies": {
     "@swc/core": ">=1.5.24"

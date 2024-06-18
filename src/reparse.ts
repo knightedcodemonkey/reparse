@@ -3,7 +3,7 @@ import { join } from 'node:path'
 
 import type { Module, Script } from '@swc/core'
 
-type Lang = 'ts' | 'es'
+import type { LangOrOpts } from './types.js'
 
 const isModuleOrScript = (msg: unknown): msg is Module | Script => {
   if (msg && typeof msg === 'object' && 'type' in msg && (msg.type === 'Module' || msg.type === 'Script')) {
@@ -36,15 +36,15 @@ const spawnChild = (...args: string[]) => {
 
   return ast
 }
-export const reparse = (source: string, lang: Lang = 'ts') => {
-  return forkChild(source, lang)
+export const reparse = (source: string, langOrOpts: LangOrOpts = 'ts') => {
+  return forkChild(source, JSON.stringify(langOrOpts))
 }
-export const reparseFile = (file: string, lang: Lang = 'ts') => {
-  return forkChild(file, lang, 'file')
+export const reparseFile = (file: string, langOrOpts: LangOrOpts = 'ts') => {
+  return forkChild(file, JSON.stringify(langOrOpts), 'file')
 }
-export const reparseSync = (source: string, lang: Lang = 'ts') => {
-  return spawnChild(source, lang)
+export const reparseSync = (source: string, langOrOpts: LangOrOpts = 'ts') => {
+  return spawnChild(source, JSON.stringify(langOrOpts))
 }
-export const reparseFileSync = (file: string, lang: Lang = 'ts') => {
-  return spawnChild(file, lang, 'file')
+export const reparseFileSync = (file: string, langOrOpts: LangOrOpts = 'ts') => {
+  return spawnChild(file, JSON.stringify(langOrOpts), 'file')
 }
