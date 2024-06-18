@@ -1,6 +1,6 @@
 {
   "name": "@knighted/reparse",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Multiple swc parsings of the same file with correct spans.",
   "type": "module",
   "main": "dist/reparse.js",
@@ -27,6 +27,7 @@
     "lint": "eslint --ignore-pattern dist .",
     "build": "duel",
     "postbuild": "tsx postbuild.ts",
+    "pretest": "npm run build",
     "test": "c8 --reporter=text --reporter=text-summary --reporter=lcov tsx --test --test-reporter=spec test/*.ts",
     "prepack": "npm run build"
   },
